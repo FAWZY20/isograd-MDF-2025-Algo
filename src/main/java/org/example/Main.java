@@ -10,7 +10,6 @@ public class Main {
 
     public static void main(String[] args) {
         IsoContest isoContest = new IsoContest();
-
         List<String> lines = new ArrayList<>();
         List<String> ressource = new ArrayList<>();
         String[] capacity;

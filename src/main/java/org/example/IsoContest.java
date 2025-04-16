@@ -7,13 +7,37 @@ import java.util.List;
 public class IsoContest {
 
     static class Ration {
-        double energy;
-        double weight;
-        int index;  // indice d'origine
+        private double energy;
+        private double weight;
+        private int index;
 
         Ration(double energy, double weight, int index) {
             this.energy = energy;
             this.weight = weight;
+            this.index = index;
+        }
+
+        public double getEnergy() {
+            return energy;
+        }
+
+        public void setEnergy(double energy) {
+            this.energy = energy;
+        }
+
+        public double getWeight() {
+            return weight;
+        }
+
+        public void setWeight(double weight) {
+            this.weight = weight;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public void setIndex(int index) {
             this.index = index;
         }
     }
@@ -33,20 +57,17 @@ public class IsoContest {
                     rations.add(new Ration(energy, weight, i));
                 }
 
-                Collections.sort(rations, (r1, r2) -> Double.compare(r2.energy, r1.energy));
+                Collections.sort(rations, (r1, r2) -> Double.compare(r2.getEnergy(), r1.getEnergy()));
 
                 for (Ration r : rations) {
-                    // Vérification de la validité des valeurs
-                    if (r.energy >= 0 && r.weight <= capacity) {
-                        lastEnergy = r.energy;
+                    if (r.getEnergy() >= 0 && r.getWeight() <= capacity) {
+                        lastEnergy = r.getEnergy();
 
-                        // Vérification que l'ajout du poids n'excède pas la capacité
-                        if (totalWeight + r.weight <= capacity) {
-                            totalWeight += r.weight;
-                            resulta.add(String.valueOf(r.index));
+                        if (totalWeight + r.getWeight() <= capacity) {
+                            totalWeight += r.getWeight();
+                            resulta.add(String.valueOf(r.getIndex()));
                         }
                     } else {
-                        // Si une erreur se produit, on renvoie une liste vide (ou une exception si vous préférez)
                         return new ArrayList<>();
                     }
                 }
